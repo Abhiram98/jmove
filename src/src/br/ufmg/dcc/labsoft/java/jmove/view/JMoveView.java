@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -101,9 +102,14 @@ public class JMoveView extends ViewPart {
 		column2.setText("Target Class");
 		column2.setResizable(true);
 		column2.pack();
+		
+		TableColumn column3 = new TableColumn(tableViewer.getTable(), SWT.LEFT);
+		column3.setText("Similarity Indice");
+		column3.setResizable(true);
+		column3.pack();
 
 		tableViewer.setColumnProperties(new String[] { "type", "source",
-				"target" });
+				"target", "similarity" });
 
 		// tableViewer.setCellModifier(new ICellModifier() {
 		// public boolean canModify(Object element, String property) {
@@ -290,6 +296,12 @@ public class JMoveView extends ViewPart {
 					identifyBadSmellsAction.setEnabled(true);
 					saveResultsAction.setEnabled(false);
 				}
+				else if(element instanceof IProject) {
+					javaProject = JavaCore.create((IProject)element);
+					selectedProject = javaProject;
+					identifyBadSmellsAction.setEnabled(true);
+					saveResultsAction.setEnabled(false);
+				}
 
 				System.out.println("Aqui " + selectedProject.getElementName());
 			}
@@ -347,6 +359,8 @@ public class JMoveView extends ViewPart {
 				return sug.getMethodSignature();
 			case 2:
 				return sug.getClassName();
+			case 3:
+				return sug.getSimilarityIndice().toString();
 			default:
 				return "";
 			}

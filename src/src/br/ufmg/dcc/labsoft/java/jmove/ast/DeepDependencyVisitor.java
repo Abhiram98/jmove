@@ -1,5 +1,6 @@
 package br.ufmg.dcc.labsoft.java.jmove.ast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -76,7 +77,9 @@ import br.ufmg.dcc.labsoft.java.jmove.methods.MethodObjects;
 import br.ufmg.dcc.labsoft.java.jmove.suggestion.MethodHasAssigment;
 import br.ufmg.dcc.labsoft.java.jmove.utils.PrintOutput;
 
-public class DeepDependencyVisitor extends ASTVisitor {
+public class DeepDependencyVisitor extends ASTVisitor implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private List<Dependency> dependencies;
 
 	private ICompilationUnit unit;

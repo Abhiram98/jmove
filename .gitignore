@@ -1,1 +1,27 @@
 .DS_Store
+eclipse-workspace
+src/bin
+.idea
+.project
+dataset-tse/ant/large/big/ant-1.8.2/
+dataset-tse/ant/small/small/ant-1.8.2/
+dataset-tse/derby/large/big/derby-10.9.1.0/
+dataset-tse/derby/small/small/derby-10.9.1.0/
+dataset-tse/drjava/large/big/drjava-stable-20100913-r5387/
+dataset-tse/drjava/small/small/drjava-stable-20100913-r5387/
+dataset-tse/jfreechart/large/big/jfreechart-1.0.13/
+dataset-tse/jfreechart/small/small/jfreechart-1.0.13/
+dataset-tse/jgroups/large/big/jgroups-2.10.0/
+dataset-tse/jgroups/small/small/jgroups-2.10.0/
+dataset-tse/jhotdraw/large/big/JHotDraw 7.6 original/
+dataset-tse/jhotdraw/small/small/JHotDraw 7.6 original/
+dataset-tse/jtopen/large/big/jtopen-7.8/
+dataset-tse/jtopen/small/small/jtopen-7.8/
+dataset-tse/junit/large/big/junit-4.10/
+dataset-tse/junit/small/small/junit-4.10/
+dataset-tse/lucene/large/big/lucene-4.2.0/
+dataset-tse/lucene/small/small/lucene-4.2.0/
+dataset-tse/mvnforum/large/big/mvnforum-1.2.2-ga/
+dataset-tse/mvnforum/small/small/mvnforum-1.2.2-ga/
+dataset-tse/tapestry/large/big/tapestry-5.1.0.5/
+dataset-tse/tapestry/small/small/tapestry-5.1.0.5/

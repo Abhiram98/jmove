@@ -173,22 +173,22 @@ public class CoefficientsResolution {
 	public static List<CoefficientStrategy> AllCoefficientStrategy() {
 
 		List<CoefficientStrategy> list = new ArrayList<CoefficientStrategy>();
-		list.add(CoefficientStrategy.SokalSneath2);
+//		list.add(CoefficientStrategy.SokalSneath2);
 		     list.add(CoefficientStrategy.Jaccard);
 		 //list.add(CoefficientStrategy.SMC);
 		 //list.add(CoefficientStrategy.Yule);
 		 //list.add(CoefficientStrategy.Hamann);
-		     list.add(CoefficientStrategy.Sorenson);
+//		     list.add(CoefficientStrategy.Sorenson);
 		 //list.add(CoefficientStrategy.RogersTanimoto);
 		 //list.add(CoefficientStrategy.SokalSneath);
 		 //list.add(CoefficientStrategy.RussellRao);
 		 //list.add(CoefficientStrategy.BaroniUrbani);
 		 //list.add(CoefficientStrategy.SokalBinary);
-		     list.add(CoefficientStrategy.Ochiai);
-		     list.add(CoefficientStrategy.DotProduct);
-		     list.add(CoefficientStrategy.Kulczynski);
+//		     list.add(CoefficientStrategy.Ochiai);
+//		     list.add(CoefficientStrategy.DotProduct);
+//		     list.add(CoefficientStrategy.Kulczynski);
 		 //list.add(CoefficientStrategy.PhiBinary);
-		     list.add(CoefficientStrategy.PSC);
+//		     list.add(CoefficientStrategy.PSC);
 		 //list.add(CoefficientStrategy.RelativeMatching);
 		 //list.add(CoefficientStrategy.SokalSneath4);
 

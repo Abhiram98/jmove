@@ -135,6 +135,7 @@ public class Main {
 							//.calculate(CoefficientStrategy.Jaccard);
 				
 					mediaApproach.calculateForAllStrategies();
+					map = mediaApproach.candidateMap;
 
 				}
 			});

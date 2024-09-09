@@ -21,30 +21,43 @@ import br.ufmg.dcc.labsoft.java.jmove.suggestion.Suggestion;
 
 public class CandidateMap {
 
-	Map<IMethod, ArrayList<String>> candidatesRefine;
+
+	class Candidate{
+		public String targetCandidate;
+		public Double similarityIndice;
+		public Candidate(String targetCandidate, Double similarityIndice){
+			this.targetCandidate = targetCandidate;
+			this.similarityIndice = similarityIndice;
+		}
+	}
+
+
+	Map<IMethod, ArrayList<Candidate>> candidatesRefine;
 	ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
 
 	public CandidateMap() {
 		// TODO Auto-generated constructor stub
-		this.candidatesRefine = new HashMap<IMethod, ArrayList<String>>();
+		this.candidatesRefine = new HashMap<IMethod, ArrayList<Candidate>>();
 		this.suggestions = new ArrayList<Suggestion>();
 
 	}
 
-	public void putCandidateOnList(IMethod iMethod, String candidate) {
+	public void putCandidateOnList(IMethod iMethod, String candidate, Double similarityIndice) {
 		// candidatesRefine.get(iMethod);
+		// TODO: Include similarityIndice in the candidate list.
 
+		Candidate newCandidate = new Candidate(candidate, similarityIndice);
 		if (candidatesRefine.containsKey(iMethod)) {
-			ArrayList<String> candidatesList = candidatesRefine.get(iMethod);
-			candidatesList.add(candidate);
+			ArrayList<Candidate> candidatesList = candidatesRefine.get(iMethod);
+			candidatesList.add(newCandidate);
 		} else {
-			ArrayList<String> candidatesList = new ArrayList<String>();
-			candidatesList.add(candidate);
+			ArrayList<Candidate> candidatesList = new ArrayList<Candidate>();
+			candidatesList.add(newCandidate);
 			candidatesRefine.put(iMethod, candidatesList);
 		}
 	}
 
-	public Map<IMethod, ArrayList<String>> getCandidatesRefine() {
+	public Map<IMethod, ArrayList<Candidate>> getCandidatesRefine() {
 		return candidatesRefine;
 	}
 
@@ -63,28 +76,29 @@ public class CandidateMap {
 							candidatesRefine.entrySet().size());
 
 					Suggestion sug;
-					Iterator<Entry<IMethod, ArrayList<String>>> it = candidatesRefine
+					Iterator<Entry<IMethod, ArrayList<Candidate>>> it = candidatesRefine
 							.entrySet().iterator();
 
 					while (it.hasNext()) {
 						monitor.worked(1);
-						Entry<IMethod, ArrayList<String>> e = it.next();
+						Entry<IMethod, ArrayList<Candidate>> e = it.next();
 
 						IMethod iMethod = (IMethod) (IMethod) e.getKey();
-						ArrayList<String> Candidates = (ArrayList<String>) e
+						ArrayList<Candidate> Candidates = (ArrayList<Candidate>) e
 								.getValue();
 						PreConditionsAnalyser analyser = new PreConditionsAnalyser();
 						if (analyser.methodCanBeMoved(iMethod)) {
-							// checar precondicçoes
-							for (String clazzName : Candidates) {
+							// Checking pre-conditions
+							for (Candidate candidate : Candidates) {
 								ICompilationUnit clazz = Clazz.getInstance()
-										.getICompilation(clazzName);
+										.getICompilation(candidate.targetCandidate);
 
 								if (analyser.satisfiesAllConditions(iMethod,
 										clazz)) {
-									sug = new Suggestion(iMethod, clazz);
+									// passed post-conditions check.
+									sug = new Suggestion(iMethod, clazz, candidate.similarityIndice);
 									suggestions.add(sug);
-									break;
+									break; // Remove this break to add more suggestions to list??
 								}
 							}
 
@@ -130,24 +144,24 @@ public class CandidateMap {
 		suggestions = new ArrayList<Suggestion>();
 
 		Suggestion sug;
-		Iterator<Entry<IMethod, ArrayList<String>>> it = candidatesRefine
+		Iterator<Entry<IMethod, ArrayList<Candidate>>> it = candidatesRefine
 				.entrySet().iterator();
 
 		while (it.hasNext()) {
 
-			Entry<IMethod, ArrayList<String>> e = it.next();
+			Entry<IMethod, ArrayList<Candidate>> e = it.next();
 
 			IMethod iMethod = (IMethod) (IMethod) e.getKey();
-			ArrayList<String> Candidates = (ArrayList<String>) e.getValue();
+			ArrayList<Candidate> Candidates = (ArrayList<Candidate>) e.getValue();
 			PreConditionsAnalyser analyser = new PreConditionsAnalyser();
 			if (analyser.methodCanBeMoved(iMethod)) {
 				// checar precondicçoes
-				for (String clazzName : Candidates) {
+				for (Candidate candidate : Candidates) {
 					ICompilationUnit clazz = Clazz.getInstance()
-							.getICompilation(clazzName);
+							.getICompilation(candidate.targetCandidate);
 
 					if (analyser.satisfiesAllConditions(iMethod, clazz)) {
-						sug = new Suggestion(iMethod, clazz);
+						sug = new Suggestion(iMethod, clazz, candidate.similarityIndice);
 						suggestions.add(sug);
 						break;
 					}

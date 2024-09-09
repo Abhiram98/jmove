@@ -24,11 +24,13 @@ public class Suggestion {
 
 	private IMethod iMethod;
 	private ICompilationUnit clazz;
+	private Double similarityIndice;
 
-	public Suggestion(IMethod iMethod, ICompilationUnit clazz) {
+	public Suggestion(IMethod iMethod, ICompilationUnit clazz, Double similarityIndice) {
 		// TODO Auto-generated constructor stub
 		this.iMethod = iMethod;
 		this.clazz = clazz;
+		this.similarityIndice = similarityIndice;
 	}
 
 	public String getMethodSignature() {
@@ -72,6 +74,10 @@ public class Suggestion {
 	public IFile getTargetIFile() {
 		// TODO Auto-generated method stub
 		return (IFile) clazz.getResource();
+	}
+	
+	public Double getSimilarityIndice() {
+		return this.similarityIndice;
 	}
 
 	public List<Position> getPositions() {

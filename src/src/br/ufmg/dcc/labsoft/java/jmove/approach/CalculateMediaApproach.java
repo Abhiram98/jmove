@@ -31,7 +31,7 @@ public class CalculateMediaApproach {
 	final int indexCORRETA = 0;
 	final int indexSUGESTAO = 1;
 	final int indexERRADO = 3;
-	CandidateMap candidateMap;
+	public CandidateMap candidateMap;
 
 	/**
 	 * @author vitor.sales classe interna
@@ -363,7 +363,6 @@ public class CalculateMediaApproach {
 				ClassAtributes classAtributes = allClassSimilarity.get(i);
 				String candidate = AllEntitiesMapping.getInstance().getByID(
 						classAtributes.classID);
-				candidateMap.putCandidateOnList(iMethod, candidate);
 
 			}
 
@@ -378,7 +377,7 @@ public class CalculateMediaApproach {
 				if (classAtributesSource.similarityIndice < VALORALTO) {
 					String candidate = AllEntitiesMapping.getInstance()
 							.getByID(classAtributes.classID);
-					candidateMap.putCandidateOnList(iMethod, candidate);
+					candidateMap.putCandidateOnList(iMethod, candidate, classAtributes.similarityIndice);
 
 				}
 			}

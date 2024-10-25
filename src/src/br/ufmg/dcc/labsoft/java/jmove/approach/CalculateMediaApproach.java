@@ -363,6 +363,7 @@ public class CalculateMediaApproach {
 				ClassAtributes classAtributes = allClassSimilarity.get(i);
 				String candidate = AllEntitiesMapping.getInstance().getByID(
 						classAtributes.classID);
+				candidateMap.putCandidateOnList(iMethod, candidate, classAtributes.similarityIndice);
 
 			}
 

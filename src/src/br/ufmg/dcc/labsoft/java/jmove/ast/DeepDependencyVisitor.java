@@ -113,9 +113,13 @@ public class DeepDependencyVisitor extends ASTVisitor implements Serializable {
 		parser.setResolveBindings(true);
 
 		this.fullClass = (CompilationUnit) parser.createAST(null); // parse
-		this.fullClass.accept(this);
-		CompilationUnitCacheJmove.getInstance().insertMapping(unit, fullClass);
-		// System.out.println("name " + className);
+		try{
+			this.fullClass.accept(this);
+			CompilationUnitCacheJmove.getInstance().insertMapping(unit, fullClass);
+		} catch(Exception e) {
+			System.out.println("failed to parse" + this.className);
+		}
+		
 	}
 
 	public final List<Dependency> getDependencies() {
